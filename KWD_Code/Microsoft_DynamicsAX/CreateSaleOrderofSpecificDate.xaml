@@ -1,0 +1,604 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CreateSaleOrderofSpecificDate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="inNoOfRetries" Type="InArgument(x:Int32)" />
+    <x:Property Name="inAccountNumber" Type="InArgument(x:String)" />
+    <x:Property Name="inClassification" Type="InArgument(x:String)" />
+    <x:Property Name="inPONumber" Type="InArgument(x:String)" />
+    <x:Property Name="inDivision" Type="InArgument(x:String)" />
+    <x:Property Name="inStartDate" Type="InArgument(x:String)" />
+    <x:Property Name="inCancelDate" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>786,4026</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="28">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>Microsoft.Activities.Expressions</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>EDIParser</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Create Sale Order of Specific Date" sap:VirtualizedContainerService.HintSize="634,3961" sap2010:WorkflowViewState.IdRef="Sequence_197">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:Window" Name="winCreateSaleOrder" />
+      <Variable x:TypeArguments="x:Int32" Name="Index" />
+      <Variable x:TypeArguments="x:String" Name="errorText" />
+      <Variable x:TypeArguments="x:Boolean" Name="elementExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="Bool_ExceptionCheck" />
+      <Variable x:TypeArguments="x:Boolean" Name="Bool_SOItemWindow" />
+      <Variable x:TypeArguments="x:String" Name="ErrorMessage" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="Bool_CreateSaleOrderWindowExist" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="592,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;---------Transaction started to create sale order for &quot;+inPONumber+&quot;--------&quot;]" />
+    <Sequence DisplayName="Check for window" sap:VirtualizedContainerService.HintSize="592,1088" sap2010:WorkflowViewState.IdRef="Sequence_253">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:UiElementExists DisplayName="Sale Order Window Exist?" Exists="[Bool_CreateSaleOrderWindowExist]" sap:VirtualizedContainerService.HintSize="550,106" sap2010:WorkflowViewState.IdRef="UiElementExists_18">
+        <ui:UiElementExists.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1130b8835f72239f9e82fb067e99e894" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Create sales order‬*‎' /&gt;" TimeoutMS="1000" WaitForReady="INTERACTIVE" />
+        </ui:UiElementExists.Target>
+      </ui:UiElementExists>
+      <If Condition="[not Bool_CreateSaleOrderWindowExist]" sap:VirtualizedContainerService.HintSize="550,850" sap2010:WorkflowViewState.IdRef="If_18">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Open Sale Order Window" sap:VirtualizedContainerService.HintSize="514,663" sap2010:WorkflowViewState.IdRef="Sequence_251">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="472,571" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" Window="{x:Null}" DisplayName="Main Window" sap:VirtualizedContainerService.HintSize="434,344" sap2010:WorkflowViewState.IdRef="WindowScope_8" InformativeScreenshot="9cbe64cbd7fab5c3f79d6e12f305120f" Selector="&lt;wnd app='ax32.exe' cls='AxMainFrame' title='‪Microsoft Dynamics AX‬*' /&gt;" TimeoutMS="9000">
+                  <ui:WindowScope.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_250">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="1500" DisplayName="Click on Sales Order button" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_24" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3a08313f15588453b03d26fe45612e96" Selector="&lt;wnd ctrlname='SalesOrder' /&gt;&lt;wnd ctrlname='NewGroup' /&gt;&lt;wnd ctrlname='NewSalesOrder' aaname='Sales order' /&gt;" WaitForReady="NONE" />
+                          </ui:Click.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:Click>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:WindowScope.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:WindowScope>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="438,21" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[new Exception(&quot;Cannot find AX window!&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_4" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_252">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <ui:WindowScope SearchScope="{x:Null}" Window="{x:Null}" ApplicationWindow="[winCreateSaleOrder]" DisplayName="Create Sale Order Window" sap:VirtualizedContainerService.HintSize="592,2610" sap2010:WorkflowViewState.IdRef="WindowScope_6" InformativeScreenshot="2890b0393cf0d6d412c9fa8d8dc3a6a1" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Create sales order‬*‎' /&gt;" TimeoutMS="10000">
+      <ui:WindowScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,2464" sap2010:WorkflowViewState.IdRef="Sequence_235">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:Boolean" Name="custReqExist" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:MaximizeWindow DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_5" Window="[winCreateSaleOrder]" />
+            <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayBefore="500" DisplayName="Enter Customer Account" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_29" SendWindowMessages="False" SimulateType="False" Text="[inAccountNumber.ToString().Trim+&quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1d250ce1db3231e4c5e92a3a009fde20" Selector="&lt;wnd cls='AxEdit' ctrlid='12297' /&gt;" WaitForReady="COMPLETE" />
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <Sequence DisplayName="Valid Customer Account?" sap:VirtualizedContainerService.HintSize="334,66" sap2010:WorkflowViewState.IdRef="Sequence_230">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[Bool_ExceptionCheck]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:UiElementExists DisplayName="Account Not Exisit?" Exists="[Bool_ExceptionCheck]" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="UiElementExists_12">
+                <ui:UiElementExists.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="854655fcc11edb62aae47f071a488b0a" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='LayoutContainer' cls='WindowsForms10.Window.*' /&gt;&lt;wnd cls='AxChildFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='SysInfologBrowser' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxTreeViewCtrl' /&gt;&lt;ctrl role='outline item' idx='2' /&gt;" TimeoutMS="600" WaitForReady="INTERACTIVE" />
+                </ui:UiElementExists.Target>
+              </ui:UiElementExists>
+              <If Condition="[Bool_ExceptionCheck]" sap:VirtualizedContainerService.HintSize="484,446" sap2010:WorkflowViewState.IdRef="If_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_228">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Error Message" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_6">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f100a9a8d3d334bb6a96230ef9b8d1f5" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='LayoutContainer' cls='WindowsForms10.Window.*' /&gt;&lt;wnd cls='AxChildFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='SysInfologBrowser' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxTreeViewCtrl' /&gt;&lt;ctrl role='outline item' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[ErrorMessage]</OutArgument>
+                      </ui:GetValue.Value>
+                    </ui:GetValue>
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[new BusinessRuleException(ErrorMessage.ToString)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_229">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Enter classification" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_30" SendWindowMessages="False" SimulateType="False" Text="[inClassification.ToString().Trim+&quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="385c1b7f96905a262d974b8f10eaad25" Selector="&lt;wnd cls='AxEdit' ctrlid='12302' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <Sequence DisplayName="Valid Classfication?" sap:VirtualizedContainerService.HintSize="334,66" sap2010:WorkflowViewState.IdRef="Sequence_239">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[Bool_ExceptionCheck]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:UiElementExists DisplayName="Classification Not Exisit?" Exists="[Bool_ExceptionCheck]" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="UiElementExists_15">
+                <ui:UiElementExists.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="854655fcc11edb62aae47f071a488b0a" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='LayoutContainer' cls='WindowsForms10.Window.*' /&gt;&lt;wnd cls='AxChildFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='SysInfologBrowser' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxTreeViewCtrl' /&gt;&lt;ctrl role='outline item' idx='2' /&gt;" TimeoutMS="600" WaitForReady="INTERACTIVE" />
+                </ui:UiElementExists.Target>
+              </ui:UiElementExists>
+              <If Condition="[Bool_ExceptionCheck]" sap:VirtualizedContainerService.HintSize="484,446" sap2010:WorkflowViewState.IdRef="If_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_237">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Error Message" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_7">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f100a9a8d3d334bb6a96230ef9b8d1f5" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='LayoutContainer' cls='WindowsForms10.Window.*' /&gt;&lt;wnd cls='AxChildFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='SysInfologBrowser' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxTreeViewCtrl' /&gt;&lt;ctrl role='outline item' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[ErrorMessage]</OutArgument>
+                      </ui:GetValue.Value>
+                    </ui:GetValue>
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[new BusinessRuleException(ErrorMessage.ToString)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_2" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_238">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Enter Division" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_31" SendWindowMessages="False" SimulateType="False" Text="[inDivision.ToString.Trim+&quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c50f34c475d2f3ec12cd592b1fc66645" Selector="&lt;wnd cls='AxEdit' ctrlid='12303' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <Sequence DisplayName="Valid Division?" sap:VirtualizedContainerService.HintSize="334,66" sap2010:WorkflowViewState.IdRef="Sequence_242">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[Bool_ExceptionCheck]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:UiElementExists DisplayName="Division Not Exisit?" Exists="[Bool_ExceptionCheck]" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="UiElementExists_16">
+                <ui:UiElementExists.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="854655fcc11edb62aae47f071a488b0a" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='LayoutContainer' cls='WindowsForms10.Window.*' /&gt;&lt;wnd cls='AxChildFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='SysInfologBrowser' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxTreeViewCtrl' /&gt;&lt;ctrl role='outline item' idx='2' /&gt;" TimeoutMS="600" WaitForReady="INTERACTIVE" />
+                </ui:UiElementExists.Target>
+              </ui:UiElementExists>
+              <If Condition="[Bool_ExceptionCheck]" sap:VirtualizedContainerService.HintSize="484,446" sap2010:WorkflowViewState.IdRef="If_15">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_240">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Error Message" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_8">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f100a9a8d3d334bb6a96230ef9b8d1f5" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='LayoutContainer' cls='WindowsForms10.Window.*' /&gt;&lt;wnd cls='AxChildFrame' title='‪Infolog‬*‎' /&gt;&lt;wnd aaname='SysInfologBrowser' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxTreeViewCtrl' /&gt;&lt;ctrl role='outline item' idx='2' /&gt;" WaitForReady="INTERACTIVE" />
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[ErrorMessage]</OutArgument>
+                      </ui:GetValue.Value>
+                    </ui:GetValue>
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[new BusinessRuleException(ErrorMessage.ToString)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_3" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_241">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="400" DisplayName="Enter Start ship date" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_32" SendWindowMessages="False" SimulateType="False" Text="[inStartDate+&quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f1ea4acec430c0ad25f76842f6e4537b" Selector="&lt;wnd aaname='@SYS*' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxRichEdit' ctrlid='12405' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="400" DisplayName="Enter Ship by date" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_33" SendWindowMessages="False" SimulateType="False" Text="[inCancelDate+&quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a7ecac529957580dcab4518ec6f76167" Selector="&lt;wnd aaname='@SYS*' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxRichEdit' ctrlid='12406' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="400" DisplayName="Enter Cancel date" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_34" SendWindowMessages="False" SimulateType="False" Text="[inCancelDate+&quot;[k(enter)]&quot;]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="052c22147175f4dcc47f196cf7eafbf7" Selector="&lt;wnd aaname='@SYS*' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxRichEdit' ctrlid='12407' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <ui:UiElementExists DisplayName="Customer Requisition Visible?" Exists="[custReqExist]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="UiElementExists_19">
+              <ui:UiElementExists.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f60ebeb6904919c45a2ad29255ca791e" Selector="&lt;wnd aaname='References' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxEdit' ctrlid='12348' /&gt;" TimeoutMS="500" WaitForReady="INTERACTIVE" />
+              </ui:UiElementExists.Target>
+            </ui:UiElementExists>
+            <If Condition="[not custReqExist]" DisplayName="Expand General" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="If_19">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_254">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Click DelayBefore="{x:Null}" ClickType="CLICK_SINGLE" DelayMS="500" DisplayName="Expand General" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="c656a84efcfebbf9332536dd6866f207" Selector="&lt;wnd cls='AxPaneWnd' ctrlid='12417' /&gt;" WaitForReady="INTERACTIVE" />
+                    </ui:Click.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:Click>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_255">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Enter Customer requisition" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="TypeInto_35" SendWindowMessages="False" SimulateType="False" Text="[inPONumber.ToString().Trim]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1d6741b9d043cb16daabce3c6be33d15" Selector="&lt;wnd aaname='References' cls='AxPaneWnd' /&gt;&lt;wnd cls='AxEdit' ctrlid='12348' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:TypeInto.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:TypeInto>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_256">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Click page down arrow" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e10af5210ac3cd95ec77104348233a2e" Selector="&lt;wnd cls='AxPaneWnd' /&gt;&lt;ctrl automationid='NonClientVerticalScrollBar' name='Vertical' role='scroll bar' /&gt;&lt;ctrl automationid='DownButton' /&gt;" WaitForReady="INTERACTIVE" />
+                    </ui:Click.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:Click>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click On Screen" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_25" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1afd8710b15e6460e31cfc18cd4a092e" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Create sales order‬*‎' /&gt;&lt;wnd cls='AxPaneWnd' ctrlid='12311' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey Page Down" EmptyField="False" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="pgdn" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="368c49079d27005cf7cb125bfa3d5a7f" Selector="&lt;wnd app='ax32.exe' cls='AxTopLevelFrame' title='‪Create sales order‬*‎' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click ok" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_22" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4c3c5ecfce7925882976b0179ffa56b0" Selector="&lt;wnd aaname='OK' cls='AxButton' /&gt;" WaitForReady="INTERACTIVE" />
+              </ui:Click.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:Click>
+          </Sequence>
+        </ActivityAction>
+      </ui:WindowScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:WindowScope>
+  </Sequence>
+</Activity>
